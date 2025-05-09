@@ -1,0 +1,1633 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"liste joueuses 2015-2016\",\"liste joueuses 2017-2018\",\"liste joueuses 2016-2017\",\"liste joueuses 2018-2019\",\"liste joueuses 2019-2020\",\"liste joueuses 2020-2021\",\"liste joueuses 2021-2022\",\"liste joueuses 2022-2023\",\"liste joueuses 2023-2024\",\"liste joueuses 2024-2025\",\"Liste Joueuses\",\"Statsequipe\",\"Exemple de fichier\",\"Paramètre1\",\"Transformer l'exemple de fichier\",\"Transformer le fichier\",\"Calendrier\",\"Classement ELO LFB\",\"Chemin\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.130.930.0 (24.06)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "fr-FR",
+    "cultures": [
+      {
+        "name": "fr-FR",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Exemple de fichier",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Binary"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Folder.Files(\"C:\\Users\\ameunier\\Desktop\\Données\\Données\\Statsequipe\"),",
+          "    Navigation1 = Source{0}[Content]",
+          "in",
+          "    Navigation1"
+        ],
+        "kind": "m",
+        "lineageTag": "f536dcca-f481-475d-9324-4f4ac82caeca",
+        "queryGroup": "Transformer le fichier à partir de Statsequipe\\Requêtes d'assistance"
+      },
+      {
+        "name": "Paramètre1",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Binary"
+          }
+        ],
+        "expression": "#\"Exemple de fichier\" meta [IsParameterQuery=true, BinaryIdentifier=#\"Exemple de fichier\", Type=\"Binary\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "11d2c2c8-4d50-4ce3-a6c1-ea7b0e84a8a3",
+        "queryGroup": "Transformer le fichier à partir de Statsequipe\\Requêtes d'assistance"
+      },
+      {
+        "name": "Transformer l'exemple de fichier",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+          "    #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})",
+          "in",
+          "    #\"Colonnes renommées\""
+        ],
+        "kind": "m",
+        "lineageTag": "18fefec4-e79b-4d2d-9dbb-425fa1e4c090",
+        "queryGroup": "Transformer le fichier à partir de Statsequipe"
+      },
+      {
+        "name": "Transformer le fichier",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Function"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = (Paramètre1 as binary) => let",
+          "    Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+          "    #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})",
+          "in",
+          "    #\"Colonnes renommées\"",
+          "in",
+          "    Source"
+        ],
+        "kind": "m",
+        "lineageTag": "9f44440f-b799-4509-9d3d-051991197273",
+        "mAttributes": "[ FunctionQueryBinding = \"{\"\"exemplarFormulaName\"\":\"\"Transformer l\\u0027exemple de fichier\"\"}\" ]",
+        "queryGroup": "Transformer le fichier à partir de Statsequipe\\Requêtes d'assistance"
+      },
+      {
+        "name": "liste joueuses 2015-2016",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2015-2016_Sheet\" = Source{[Item=\"liste joueuses 2015-2016\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2015-2016_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "46d45956-8233-4df0-9f28-8f9194de4536"
+      },
+      {
+        "name": "liste joueuses 2017-2018",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2017-2018_Sheet\" = Source{[Item=\"liste joueuses 2017-2018\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2017-2018_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "fe6d7d47-eca0-4257-8c9c-c6c75d29465d"
+      },
+      {
+        "name": "liste joueuses 2016-2017",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2016-2017_Sheet\" = Source{[Item=\"liste joueuses 2016-2017\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2016-2017_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "69bae18b-34bb-4852-81c0-cbf33fedc158"
+      },
+      {
+        "name": "liste joueuses 2018-2019",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2018-2019_Sheet\" = Source{[Item=\"liste joueuses 2018-2019\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2018-2019_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "000951ab-4264-4ef0-b060-6411fec58ad9"
+      },
+      {
+        "name": "liste joueuses 2019-2020",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2019-2020_Sheet\" = Source{[Item=\"liste joueuses 2019-2020\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2019-2020_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "77dd671a-1b34-4171-8085-4e42b5dc4296"
+      },
+      {
+        "name": "liste joueuses 2020-2021",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2020-2021_Sheet\" = Source{[Item=\"liste joueuses 2020-2021\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2020-2021_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type date}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "a3efa2d3-a293-459c-a2f1-730cd25ba1e0"
+      },
+      {
+        "name": "liste joueuses 2021-2022",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2021-2022_Sheet\" = Source{[Item=\"liste joueuses 2021-2022\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2021-2022_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "7d555861-671f-47e6-acd5-b453de1d903b"
+      },
+      {
+        "name": "liste joueuses 2022-2023",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2022-2023_Sheet\" = Source{[Item=\"liste joueuses 2022-2023\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2022-2023_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "f44f2e0d-2350-49c1-9803-40f121dd3cb1"
+      },
+      {
+        "name": "liste joueuses 2023-2024",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2023-2024_Sheet\" = Source{[Item=\"liste joueuses 2023-2024\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2023-2024_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "f186cb80-6aa9-4d78-963b-cf4119855293"
+      },
+      {
+        "name": "liste joueuses 2024-2025",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
+          "    #\"liste joueuses 2024-2025_Sheet\" = Source{[Item=\"liste joueuses 2024-2025\",Kind=\"Sheet\"]}[Data],",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2024-2025_Sheet\", [PromoteAllScalars=true]),",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
+          "in",
+          "    #\"Type modifié\""
+        ],
+        "kind": "m",
+        "lineageTag": "d971cb1d-8b9f-46c5-a31b-b48beb086c17"
+      },
+      {
+        "name": "Chemin",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\" meta [IsParameterQuery=true, List={\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\"}, DefaultValue=\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\", Type=\"Any\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "37c91f52-fccb-40fa-8285-f123db3af843",
+        "queryGroup": "Paramètres"
+      }
+    ],
+    "queryGroups": [
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "1"
+          }
+        ],
+        "folder": "Transformer le fichier à partir de Statsequipe"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "folder": "Transformer le fichier à partir de Statsequipe\\Requêtes d'assistance"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "folder": "Paramètres"
+      }
+    ],
+    "sourceQueryCulture": "fr-FR",
+    "tables": [
+      {
+        "name": "DateTableTemplate_273d95b1-289e-432a-9789-5d25d3d2c026",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "3e80d8f5-0525-43f7-a896-efa60a5c8f52",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Année",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "e85b38d7-66fe-4407-a7fe-cdf029d2b3f0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NoMois",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "33a6a634-a210-4c6a-92fa-792e63b771e9",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mois",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "08674525-6e24-434f-9179-c68fe9dba5e8",
+            "sortByColumn": "NoMois",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NoTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NoMois] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "75ff16b5-231c-4398-89df-7a4167b99530",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim \" & [NoTrimestre]",
+            "isHidden": true,
+            "lineageTag": "3cb64d73-cac7-4807-94be-5a5e3941302d",
+            "sortByColumn": "NoTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Jour",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "1ffbd80e-ec79-4606-b8dd-d22f13ba5c63",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hiérarchie de dates",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Année",
+                "column": "Année",
+                "lineageTag": "3c1912ef-ca9c-4483-a5d6-2e0ec93e6cd9",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "2473c847-c324-4fde-b1c3-5dd6e2b5a3b4",
+                "ordinal": 1
+              },
+              {
+                "name": "Mois",
+                "column": "Mois",
+                "lineageTag": "94ce156d-f739-437b-b78c-bd0cc2d8bdd8",
+                "ordinal": 2
+              },
+              {
+                "name": "Jour",
+                "column": "Jour",
+                "lineageTag": "06de3247-ab1f-4803-988e-e5d072132657",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "664d479e-63d1-4457-a41d-56e0c74e0aca"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "ecd4a2ff-de9c-4963-9452-0a951cef0a99",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_273d95b1-289e-432a-9789-5d25d3d2c026",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Liste Joueuses",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Saison",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e983eaff-b7ee-494d-8b15-6be2ff3ce976",
+            "sourceColumn": "Saison",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nom_complet",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c6843b83-91cc-42dd-81db-9c80ba97c77a",
+            "sourceColumn": "Nom_complet",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Date de naissance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "881ab01b-f344-49b2-8f6f-10ad0ece243e",
+            "sourceColumn": "Date de naissance",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Taille",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "774e0aa8-bee5-4d56-b72f-3dbe6bef7436",
+            "sourceColumn": "Taille",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Equipe",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "45858b1d-f5de-411c-bce4-87b68aec8886",
+            "sourceColumn": "Equipe",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nationalité",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5d964781-f2f0-47f6-b5b4-135472c1d277",
+            "sourceColumn": "Nationalité",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nom",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b95d6d39-9f7a-4c55-982b-dc529b9e1504",
+            "sourceColumn": "Nom",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Prenom",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8d3beb9c-04f8-4b25-9118-3f8509c9b8ee",
+            "sourceColumn": "Prenom",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nom_condense",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ec66b4fe-a8b8-45e9-ba6c-4820e2349942",
+            "sourceColumn": "Nom_condense",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "6d0a74ae-965a-4866-9eae-01528907b186",
+        "partitions": [
+          {
+            "name": "Liste Joueuses",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.Combine({#\"liste joueuses 2015-2016\", #\"liste joueuses 2017-2018\", #\"liste joueuses 2016-2017\", #\"liste joueuses 2018-2019\", #\"liste joueuses 2019-2020\", #\"liste joueuses 2020-2021\", #\"liste joueuses 2021-2022\", #\"liste joueuses 2022-2023\", #\"liste joueuses 2023-2024\", #\"liste joueuses 2024-2025\"})",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Statsequipe",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Equipe",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1117f6c5-1244-4073-b7c5-93f7a6fe0f0a",
+            "sourceColumn": "Equipe",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Saison",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9a6106df-9b45-4251-b912-acf12e9a597a",
+            "sourceColumn": "Saison",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Num_match",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4aebeb09-4cd4-468b-86fe-0a77f04be7cf",
+            "sourceColumn": "Num_match",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Competition",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "26b8603a-4e6b-4974-b4bf-5e6b076f65f8",
+            "sourceColumn": "Competition",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dom_ext",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0da79b63-e144-41ca-b07e-adff3aa34b9e",
+            "sourceColumn": "dom_ext",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Gagne_perdu",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "11a84fb2-a187-44d1-b1c6-e952827566fe",
+            "sourceColumn": "Gagne_perdu",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Adveresaire",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7e0ad509-c94a-463e-863e-9b1741538ed7",
+            "sourceColumn": "Adveresaire",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Capitaine",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "91b9a2c7-e8cd-412f-ad29-9d305b262ce6",
+            "sourceColumn": "Capitaine",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Starter/bench",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a089bc1b-6e40-4e8c-bd95-5b96c9957213",
+            "sourceColumn": "Starter/bench",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Joueur",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3fe905be-8fe3-4473-8afc-5d9df647c21d",
+            "sourceColumn": "Joueur",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Minutes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "72f05a17-5ca7-41bc-9ec7-b9a13c9dbf87",
+            "sourceColumn": "Minutes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Secondes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "afbc649a-282b-4cf5-9a55-1c60732be33c",
+            "sourceColumn": "Secondes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Secondes(minutes)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "519bc761-d9e0-4643-9a44-c508494705d7",
+            "sourceColumn": "Secondes(minutes)",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tps_jeu_decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "30ef339d-35e5-4917-aa62-11cd6d7f3c18",
+            "sourceColumn": "Tps_jeu_decimal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tirs_marques",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6e78d667-4898-420b-98f7-4e7fd16a9088",
+            "sourceColumn": "Tirs_marques",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tirs_tentes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0cfa760b-8dfd-472a-bb05-03e3abfc18a6",
+            "sourceColumn": "Tirs_tentes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "%Tirs",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a104d0ae-d641-42c2-8e66-7f25cf530320",
+            "sourceColumn": "%Tirs",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "2pts_marques",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b8c102f2-c135-432c-b3f6-5d82474b4770",
+            "sourceColumn": "2pts_marques",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "2pts_tentes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "edaa2f59-af99-439a-b544-879cc91a0560",
+            "sourceColumn": "2pts_tentes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "%2pts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ed031995-2ded-495a-aee4-ce13e83f7d9d",
+            "sourceColumn": "%2pts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "3pts_marques",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4d52b9ed-7cae-46a1-ab91-688c74aa7512",
+            "sourceColumn": "3pts_marques",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "3pts_tentes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "96bc609e-3917-4aec-9160-ad57fef2c935",
+            "sourceColumn": "3pts_tentes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "%3pts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7fea3767-e13d-4a04-afc6-c9cb3d8dd50e",
+            "sourceColumn": "%3pts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "LF_marques",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5ae249bd-fa14-433d-ade1-bcced848c943",
+            "sourceColumn": "LF_marques",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "LF_tentes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ae5869bb-718f-485a-89a6-0afdeafac319",
+            "sourceColumn": "LF_tentes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "%LF",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4ff04ed5-e9f8-4eb6-97ad-c47907b547d0",
+            "sourceColumn": "%LF",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Pts_apres_balles_perdues",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6d497866-dba0-464c-bfd8-eb31fa7a8d39",
+            "sourceColumn": "Pts_apres_balles_perdues",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Points_int",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ba11fdcc-3e32-4912-9022-31345924e018",
+            "sourceColumn": "Points_int",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Point_2eme_chance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e97aba25-5845-4bb5-8bf3-41d0fb84ef64",
+            "sourceColumn": "Point_2eme_chance",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Points_CA",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "38a8606d-dfdd-49ab-a41d-fe7eb126f834",
+            "sourceColumn": "Points_CA",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Points_banc",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "556e6a0a-17e8-49e0-a2dd-d2fe1a676571",
+            "sourceColumn": "Points_banc",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Ecart_max",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cb68c2c6-b2fc-42c1-89fe-4de6a7f2605e",
+            "sourceColumn": "Ecart_max",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Serie_max",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e2fabe0d-e9fd-4570-9a9c-9a6f896e60f4",
+            "sourceColumn": "Serie_max",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Pts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "46f1c75a-7fd3-4472-9d83-8cd3ae3fa9bd",
+            "sourceColumn": "Pts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RO",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bf41d742-9e52-4bfb-b8cd-aa16032e0c77",
+            "sourceColumn": "RO",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RD",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4af9400e-f68b-4fcd-81f4-b5d43c06866d",
+            "sourceColumn": "RD",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RT",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "815edde7-3683-4d07-b361-bb8b16b558ee",
+            "sourceColumn": "RT",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PD",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "347612e9-cd56-4976-b579-628ff96680d0",
+            "sourceColumn": "PD",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "BP",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e99fa36a-6176-44da-aab9-191594b2d202",
+            "sourceColumn": "BP",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "INT",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "be3b4840-4198-40dd-8c9e-b8d8a6e05bf9",
+            "sourceColumn": "INT",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CT",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7337de07-3316-4656-9347-b1ec22fd3e03",
+            "sourceColumn": "CT",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CTS",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3925c0c7-af0d-4ce7-808c-60deeceb74c3",
+            "sourceColumn": "CTS",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "F",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5efa6b8f-19d1-4f6c-aaf3-9cd1dc7e50c5",
+            "sourceColumn": "F",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FPR",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f9913196-8f68-4af2-807e-29bbbe34dfba",
+            "sourceColumn": "FPR",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "+/-",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f1c8fd8a-2482-4f2f-8ec7-1bcc6c239799",
+            "sourceColumn": "+/-",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "EVAL",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e6132c6d-37bc-426e-901a-fb21e3ff7c2f",
+            "sourceColumn": "EVAL",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N°",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4db6f9a7-c9ad-4a74-810b-1a9d1682234a",
+            "sourceColumn": "N°",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "JOUEUR.1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b1fa10db-6c50-4342-a780-0b77ff245fab",
+            "sourceColumn": "JOUEUR.1",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "2ea75db0-9c20-4398-92f8-689bf6548f65",
+        "partitions": [
+          {
+            "name": "Statsequipe",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Folder.Files(Chemin & \"\\Statsequipe\"),",
+                "    #\"Fichiers masqués filtrés1\" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),",
+                "    #\"Appeler une fonction personnalisée1\" = Table.AddColumn(#\"Fichiers masqués filtrés1\", \"Transformer le fichier\", each #\"Transformer le fichier\"([Content])),",
+                "    #\"Colonnes renommées1\" = Table.RenameColumns(#\"Appeler une fonction personnalisée1\", {\"Name\", \"Source.Name\"}),",
+                "    #\"Autres colonnes supprimées1\" = Table.SelectColumns(#\"Colonnes renommées1\", {\"Source.Name\", \"Transformer le fichier\"}),",
+                "    #\"Colonne de tables développée1\" = Table.ExpandTableColumn(#\"Autres colonnes supprimées1\", \"Transformer le fichier\", Table.ColumnNames(#\"Transformer le fichier\"(#\"Exemple de fichier\"))),",
+                "    #\"Colonnes renommées\" = Table.RenameColumns(#\"Colonne de tables développée1\",{{\"Source.Name\", \"Equipe\"}}),",
+                "    #\"Valeur remplacée\" = Table.ReplaceValue(#\"Colonnes renommées\",\".csv\",\"\",Replacer.ReplaceText,{\"Equipe\"}),",
+                "    #\"Lignes filtrées\" = Table.SelectRows(#\"Valeur remplacée\", each ([Joueur] <> \"TOTAUX EQUIPE\"))",
+                "in",
+                "    #\"Lignes filtrées\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Calendrier",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Journée",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a6f28f55-7804-44b6-a887-83d9f1b9b7ad",
+            "sourceColumn": "Journée",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Domicile",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "54f81ed1-e8e5-4f83-8393-187626368e19",
+            "sourceColumn": "Domicile",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Exterieur",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ef3f9c00-6c0b-421e-94e9-9472bb099fc2",
+            "sourceColumn": "Exterieur",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Score domicile",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a1f55837-8d51-4ed4-9e4c-934c0b0e3840",
+            "sourceColumn": "Score domicile",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Score Exterieur",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b3135f98-d276-49cf-8109-485446267bdb",
+            "sourceColumn": "Score Exterieur",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Derby",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6a11d67c-ab3c-4566-9aec-3726e39d4f73",
+            "sourceColumn": "Derby",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "a6b4e3ac-dc83-4e6d-905c-e49ede55e38e",
+        "partitions": [
+          {
+            "name": "Calendrier",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(Chemin & \"\\calendrier et resultat.xlsx\"), null, true),",
+                "    Calendrier_Sheet = Source{[Item=\"Calendrier\",Kind=\"Sheet\"]}[Data],",
+                "    #\"En-têtes promus\" = Table.PromoteHeaders(Calendrier_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Journée\", Int64.Type}, {\"Domicile\", type text}, {\"Exterieur\", type text}, {\"Score domicile\", Int64.Type}, {\"Score Exterieur\", Int64.Type}, {\"Derby\", Int64.Type}})",
+                "in",
+                "    #\"Type modifié\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Classement ELO LFB",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Rang",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "75fb1bc4-7df0-4372-befb-4edc5bed59ca",
+            "sourceColumn": "Rang",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Équipe",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d0b728b6-0f85-4236-a270-a32e119ffcde",
+            "sourceColumn": "Équipe",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ELO estimé debut de saison",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a698e0b8-e905-46d5-b04a-e0841c7cac7c",
+            "sourceColumn": "ELO estimé debut de saison",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Commentaire",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d5ca03cf-9ea0-4ddb-8b18-a3cc27b055ba",
+            "sourceColumn": "Commentaire",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "c095ae9d-f186-4429-99ed-3f852b02ef7a",
+        "partitions": [
+          {
+            "name": "Classement ELO LFB",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(Chemin & \"\\Classement ELO LFB.xlsx\"), null, true),",
+                "    #\"Classement ELO LFB_Sheet\" = Source{[Item=\"Classement ELO LFB\",Kind=\"Sheet\"]}[Data],",
+                "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"Classement ELO LFB_Sheet\", [PromoteAllScalars=true]),",
+                "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Rang\", Int64.Type}, {\"Équipe\", type text}, {\"ELO estimé debut de saison\", Int64.Type}, {\"Commentaire\", type text}})",
+                "in",
+                "    #\"Type modifié\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
