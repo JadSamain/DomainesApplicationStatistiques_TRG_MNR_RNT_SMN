@@ -89,8 +89,42 @@ efficency offensive
 taux de possession
 rating offenssive and defensive
 
-Formule defensive rating : Defensive Player Rating = (Players Steals*Blocks) + Opponents Differential= 1/5 of possessions - Times blown by + Deflections * OAPDW( Official Adjusted Players Defensive Withstand)
-
 https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/
 https://viziball.app/glossary/nba/en
 https://www.basketball-reference.com/about/ratings.html 
+
+Possession = 0.5 * (...) + BP
+Offensive rating = 100 * ( PTS / POSS)
+Defensive rating = 100 * (OppPTS / OppPOSS)
+NetRating = Offensive rating - Defensive rating 
+
+Graph à réaliser :
+✅ 1. Scatter Plot (nuage de points) – LE MEILLEUR CHOIX
+
+    X-axis : Offensive Rating
+
+    Y-axis : Defensive Rating (utiliser une échelle inversée car un DRtg plus bas est meilleur)
+
+    Optionnel : Taille ou couleur des points = Net Rating
+
+📌 Pourquoi ?
+Ce graphe te permet de voir en un coup d'œil :
+
+    Les équipes fortes en attaque (droite du graphique)
+
+    Les équipes fortes en défense (haut du graphique, si l’axe Y est inversé)
+
+    Les équipes équilibrées (en haut à droite)
+
+    Les extrêmes ou déséquilibres (ex : très bonne attaque mais défense faible)
+
+👉 Ajout des noms des équipes pour plus de lisibilité.
+
+💡 Résumé visuel :
+But	Graphique conseillé	Axes clés
+Identifier les styles de jeu
+Scatter Plot multivarié	Pace vs 3PAr (taille = AST%)
+
+Comparer la réussite des styles	
+Box Plot ou Bar Plot par style	
+Style → Net Rating ou Win %
