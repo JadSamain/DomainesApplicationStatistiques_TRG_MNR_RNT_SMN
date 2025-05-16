@@ -1,3 +1,5 @@
+# On retire la coupe de france parce qu'en coupe de france, on peut jouer contre des équipes du niveau inférieure
+
 # DomainesApplicationStatistiques_TRG_MNR_RNT_SMN
 
 TRUONG David / MEUNIER Aubin / RENAULT Thibault / SAMAIN Jad
