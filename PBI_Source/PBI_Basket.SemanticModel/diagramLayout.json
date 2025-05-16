@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 1268,
-        "y": 271
+        "x": 1266,
+        "y": 579.75766156104328
       },
       "nodes": [
         {
           "location": {
             "x": 1334.308182237547,
-            "y": 655.17177437402881
+            "y": 963.75766156104328
           },
           "nodeIndex": "Calendrier",
           "nodeLineageTag": "a6b4e3ac-dc83-4e6d-905c-e49ede55e38e",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 1618.308182237547,
-            "y": 679.17177437402881
+            "y": 987.75766156104328
           },
           "nodeIndex": "Classement ELO LFB",
           "nodeLineageTag": "c095ae9d-f186-4429-99ed-3f852b02ef7a",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 1902.308182237547,
-            "y": 619.17177437402881
+            "y": 927.75766156104328
           },
           "nodeIndex": "Liste Joueuses",
           "nodeLineageTag": "6d0a74ae-965a-4866-9eae-01528907b186",
@@ -50,12 +50,24 @@
         {
           "location": {
             "x": 2186.308182237547,
-            "y": 617.17177437402881
+            "y": 925.75766156104328
           },
           "nodeIndex": "Statsequipe",
           "nodeLineageTag": "2ea75db0-9c20-4398-92f8-689bf6548f65",
           "size": {
             "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 358.58588718701441
+          },
+          "nodeIndex": "Mesures",
+          "size": {
+            "height": 200,
             "width": 234
           },
           "zIndex": 0

@@ -830,7 +830,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Exception"
+            "value": "Table"
           },
           {
             "name": "PBI_NavigationStepName",
@@ -1623,6 +1623,19 @@
             "lineageTag": "722adf7c-f7cf-4ed9-8cf0-241b049a2100",
             "sourceColumn": "OffensiveRating",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "DefensiveRate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dd045c2d-4da1-44bc-b01c-9dcad6ee6825",
+            "sourceColumn": "DefensiveRate",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "2ea75db0-9c20-4398-92f8-689bf6548f65",
@@ -1650,9 +1663,15 @@
                 "",
                 "    // Calcul de l'offensive rating",
                 "    #\"AjoutOffRtg\" = Table.AddColumn(#\"AjoutPossessions\", \"OffensiveRating\", each ",
-                "        if [Possessions] = 0 then null else ([Pts] / [Possessions]) * 100, type number)",
+                "        if [Possessions] = 0 then null else ([Pts] / [Possessions]) * 100, type number),",
+                "    #\"Valeur remplacée1\" = Table.ReplaceValue(AjoutOffRtg,0,null,Replacer.ReplaceValue,{\"+/-\"}),",
+                "    #\"Valeur remplacée2\" = Table.ReplaceValue(#\"Valeur remplacée1\",-30,null,Replacer.ReplaceValue,{\"+/-\"}),",
+                "    #\"Valeur remplacée3\" = Table.ReplaceValue(#\"Valeur remplacée2\",30,null,Replacer.ReplaceValue,{\"+/-\"}),",
+                "    #\"Valeur remplacée4\" = Table.ReplaceValue(#\"Valeur remplacée3\",125,null,Replacer.ReplaceValue,{\"+/-\"}),",
+                "    #\"Personnalisée ajoutée\" = Table.AddColumn(#\"Valeur remplacée4\", \"DefensiveRate\", each ([INT] * [BP]) +([Possessions] / 5)),",
+                "    #\"Lignes filtrées1\" = Table.SelectRows(#\"Personnalisée ajoutée\", each ([Equipe] = \"Angers\") and ([Adveresaire] = \"Landerneau\"))",
                 "in",
-                "    AjoutOffRtg"
+                "    #\"Lignes filtrées1\""
               ],
               "type": "m"
             }
@@ -1859,6 +1878,50 @@
                 "    #\"Type modifié\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Mesures",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "80b1f04db9ab43499ca303a5be8ed299"
+          },
+          {
+            "name": "436ba87b-9c83-4389-a31b-ebd06a36be98",
+            "value": "{\"Expression\":\"\"}"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "e3a6b3f1-1385-4076-9cf8-28c50afd38d3",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "19b452bf-5b61-44b9-9e8e-815b25b151c8",
+        "partitions": [
+          {
+            "name": "Mesures",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
             }
           }
         ]
