@@ -1,14 +1,16 @@
-# On retire la coupe de france parce qu'en coupe de france, on peut jouer contre des équipes du niveau inférieure
-
 # DomainesApplicationStatistiques_TRG_MNR_RNT_SMN
 
-TRUONG David / MEUNIER Aubin / RENAULT Thibault / SAMAIN Jad
+```
+TRUONG David 
+MEUNIER Aubin 
+RENAULT Thibault 
+SAMAIN Jad
+```
 
 ## Schéma de donnée
+![alt text](image/image.png)
 
-![1746781257426](image/README/1746781257426.png)
-
-## Données
+## Dictionnaires de données
 
 - Saison : L'année ou la saison sportive à laquelle les données se réfèrent (par exemple, saison 2024-2025).
 - Num_match : Le numéro ou l'identifiant du match dans la saison.
@@ -49,82 +51,52 @@ TRUONG David / MEUNIER Aubin / RENAULT Thibault / SAMAIN Jad
 - PD : Nombre de passes décisives réalisées par le joueur.
 - BP : Nombre de blocks (contre) réalisés par le joueur.
 - INT : Nombre d’interceptions réalisées par le joueur.
-  CT : Nombre de fautes commises par le joueur.
-  CTS : Nombre de fautes subies par le joueur.
-  F : Nombre de fautes personnelles commises par le joueur.
-  FPR : Le ratio de fautes personnelles commises par rapport à ses minutes de jeu.
-  +/- : L'écart de points de l’équipe lorsque le joueur est sur le terrain, aussi appelé le "plus/moins" (différence entre les points marqués par son équipe et ceux marqués par l'adversaire pendant qu'il joue).
-  EVAL : L’évaluation globale du joueur, souvent utilisée comme un indicateur de performance. Elle regroupe plusieurs statistiques de performance (points, rebonds, passes, etc.).
-  N° : Le numéro du joueur
-  JOUEUR : Le nom ou l’identifiant du joueur (peut être une version alternative ou un code du joueur).
+- CT : Nombre de fautes commises par le joueur.
+- CTS : Nombre de fautes subies par le joueur.
+- F : Nombre de fautes personnelles commises par le joueur.
+- FPR : Le ratio de fautes personnelles commises par rapport à ses minutes de jeu.
+- +/- : L'écart de points de l’équipe lorsque le joueur est sur le terrain, aussi appelé le "plus/moins" (différence entre les points marqués par son équipe et ceux marqués par l'adversaire pendant qu'il joue).
+- EVAL : L’évaluation globale du joueur, souvent utilisée comme un indicateur de performance. Elle regroupe plusieurs statistiques de performance (points, rebonds, passes, etc.).
+- N° : Le numéro du joueur
+- JOUEUR : Le nom ou l’identifiant du joueur (peut être une version alternative ou un code du joueur).
 
 ## Problématique
 
-Quel style de jeu est le plus efficace en termes de victoire ?
+**Quel style de jeu est le plus efficace en termes de victoire ?**
 
 ## Style de jeux
 
-1. Style Offensif :
+| **Style de jeu** | **Description**                                                           | **Indicateurs clés**                                       | **Forces**                                | **Faiblesses**                                |  |
+| ---------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------- | --------------------------------------------- | ----------------------- |
+| **Offensif**     | Style axé sur la production de points, souvent à rythme élevé             | 🔹 **ORtg élevé**<br>🔹 Pace élevé<br>🔹 eFG% / 3PAr élevé | Créativité, spacing, efficacité offensive | Défense négligée, vulnérable dans les runs    
+| **Défensif**     | Priorité à la défense, rythme plus lent, jeux structurés                  | 🔹 **DRtg faible**<br>🔹 Pace faible<br>🔹 OREB% / DREB% ↑ | Discipline, rebond, protection du cercle  | Manque de scoring rapide ou tir extérieur    
+| **Équilibré**    | Solide des deux côtés du terrain, capable de s’adapter selon l’adversaire | 🔹 ORtg & DRtg tous les deux bons<br>🔹 Net Rating élevé   | Polyvalence, stabilité, adaptabilité      | Peu de failles mais parfois sans "punch" fort 
 
-- %3pts (pourcentage de réussite des tirs à 3 points)
-- Points_CA (points sur contre-attaque)
-- Tirs_marques (nombre de tirs réussis)
-- Points (total des points marqués)
+## Source des calculs des indicateurs
+- https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/
+- https://viziball.app/glossary/nba/en
+- https://www.basketball-reference.com/about/ratings.html 
 
-2. Style Défensif :
+## Calcul des indicateurs 
+- Possession = 0.5 * (...) + BP
+- Offensive rating = 100 * ( PTS / POSS)
+- Defensive rating = 100 * (OppPTS / OppPOSS)
+- NetRating = Offensive rating - Defensive rating 
 
-- Opponent FG% (pourcentage de réussite des tirs de l'adversaire)
-- INT (interceptions)
-- CT (contres)
-- Points_int (points encaissés après balles perdues)
+## Interprétation des indicateurs
+| **Indicateur**       | **Ce que ça mesure**                         | **Valeur élevée =**                              | **Valeur basse =** | **Interprétation rapide**                                |
+| -------------------- | -------------------------------------------- | ------------------------------------------------ | ------------------ | -------------------------------------------------------- |
+| **Offensive Rating** | Points marqués / 100 possessions             | Bonne attaque                                    | Attaque inefficace | Mesure l'efficacité offensive                            |
+| **Defensive Rating** | Points encaissés / 100 possessions           | Mauvaise défense                                 | Bonne défense      | Plus c’est bas, mieux l’équipe défend                    |
+| **Net Rating**       | ORtg – DRtg (diff. entre attaque et défense) | Équipe dominante (plus elle bat ses adversaires) | Équipe dominée     | Meilleur indicateur global de niveau (attaque – défense) |
 
-3. Style Équilibré :
+## Graph à réaliser :
+**Identifier les styles de jeu**
+- Scatter Plot multivarié	
+- Pace vs 3PAr
 
-- Net Rating (différence entre l'Offensive Rating et le Defensive Rating)
-- EVAL (évaluation globale des joueurs)
-- Points_banc (points marqués par les joueurs du banc)
-- Pts (total des points marqués)
+**Comparer la réussite des styles**	
+- Box Plot ou Bar Plot par style	
+- Style → Net Rating ou Win %
 
-efficency offensive
-taux de possession
-rating offenssive and defensive
-
-https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/
-https://viziball.app/glossary/nba/en
-https://www.basketball-reference.com/about/ratings.html 
-
-Possession = 0.5 * (...) + BP
-Offensive rating = 100 * ( PTS / POSS)
-Defensive rating = 100 * (OppPTS / OppPOSS)
-NetRating = Offensive rating - Defensive rating 
-
-Graph à réaliser :
-✅ 1. Scatter Plot (nuage de points) – LE MEILLEUR CHOIX
-
-    X-axis : Offensive Rating
-
-    Y-axis : Defensive Rating (utiliser une échelle inversée car un DRtg plus bas est meilleur)
-
-    Optionnel : Taille ou couleur des points = Net Rating
-
-📌 Pourquoi ?
-Ce graphe te permet de voir en un coup d'œil :
-
-    Les équipes fortes en attaque (droite du graphique)
-
-    Les équipes fortes en défense (haut du graphique, si l’axe Y est inversé)
-
-    Les équipes équilibrées (en haut à droite)
-
-    Les extrêmes ou déséquilibres (ex : très bonne attaque mais défense faible)
-
-👉 Ajout des noms des équipes pour plus de lisibilité.
-
-💡 Résumé visuel :
-But	Graphique conseillé	Axes clés
-Identifier les styles de jeu
-Scatter Plot multivarié	Pace vs 3PAr (taille = AST%)
-
-Comparer la réussite des styles	
-Box Plot ou Bar Plot par style	
-Style → Net Rating ou Win %
+On retire la coupe de france parce qu'en coupe de france, on peut jouer contre des équipes du niveau inférieure
