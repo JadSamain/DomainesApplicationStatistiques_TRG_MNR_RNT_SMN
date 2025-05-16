@@ -1,10 +1,13 @@
 # DomainesApplicationStatistiques_TRG_MNR_RNT_SMN
 
 TRUONG David / MEUNIER Aubin / RENAULT Thibault / SAMAIN Jad
+
 ## Schéma de donnée
+
 ![1746781257426](image/README/1746781257426.png)
 
 ## Données
+
 - Saison : L'année ou la saison sportive à laquelle les données se réfèrent (par exemple, saison 2024-2025).
 - Num_match : Le numéro ou l'identifiant du match dans la saison.
 - Competition : Le nom de la compétition ou du tournoi dans lequel le match a eu lieu (ex : Ligue 1, EuroLeague).
@@ -44,40 +47,45 @@ TRUONG David / MEUNIER Aubin / RENAULT Thibault / SAMAIN Jad
 - PD : Nombre de passes décisives réalisées par le joueur.
 - BP : Nombre de blocks (contre) réalisés par le joueur.
 - INT : Nombre d’interceptions réalisées par le joueur.
-CT : Nombre de fautes commises par le joueur.
-CTS : Nombre de fautes subies par le joueur.
-F : Nombre de fautes personnelles commises par le joueur.
-FPR : Le ratio de fautes personnelles commises par rapport à ses minutes de jeu.
-+/- : L'écart de points de l’équipe lorsque le joueur est sur le terrain, aussi appelé le "plus/moins" (différence entre les points marqués par son équipe et ceux marqués par l'adversaire pendant qu'il joue).
-EVAL : L’évaluation globale du joueur, souvent utilisée comme un indicateur de performance. Elle regroupe plusieurs statistiques de performance (points, rebonds, passes, etc.).
-N° : Le numéro du joueur
-JOUEUR : Le nom ou l’identifiant du joueur (peut être une version alternative ou un code du joueur).
-
+  CT : Nombre de fautes commises par le joueur.
+  CTS : Nombre de fautes subies par le joueur.
+  F : Nombre de fautes personnelles commises par le joueur.
+  FPR : Le ratio de fautes personnelles commises par rapport à ses minutes de jeu.
+  +/- : L'écart de points de l’équipe lorsque le joueur est sur le terrain, aussi appelé le "plus/moins" (différence entre les points marqués par son équipe et ceux marqués par l'adversaire pendant qu'il joue).
+  EVAL : L’évaluation globale du joueur, souvent utilisée comme un indicateur de performance. Elle regroupe plusieurs statistiques de performance (points, rebonds, passes, etc.).
+  N° : Le numéro du joueur
+  JOUEUR : Le nom ou l’identifiant du joueur (peut être une version alternative ou un code du joueur).
 
 ## Problématique
+
 Quel style de jeu est le plus efficace en termes de victoire ?
 
 ## Style de jeux
+
 1. Style Offensif :
+
 - %3pts (pourcentage de réussite des tirs à 3 points)
 - Points_CA (points sur contre-attaque)
 - Tirs_marques (nombre de tirs réussis)
 - Points (total des points marqués)
 
 2. Style Défensif :
+
 - Opponent FG% (pourcentage de réussite des tirs de l'adversaire)
 - INT (interceptions)
 - CT (contres)
 - Points_int (points encaissés après balles perdues)
-  
-3. Style Équilibré : 
+
+3. Style Équilibré :
+
 - Net Rating (différence entre l'Offensive Rating et le Defensive Rating)
 - EVAL (évaluation globale des joueurs)
 - Points_banc (points marqués par les joueurs du banc)
 - Pts (total des points marqués)
 
 efficency offensive
-basket.info
-taux de possession 
+taux de possession
 rating offenssive and defensive
-formule à trouver pour Jad
+
+https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/ 
+https://viziball.app/glossary/nba/en 
