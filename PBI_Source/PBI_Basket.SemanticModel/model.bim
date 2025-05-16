@@ -44,11 +44,15 @@
           {
             "name": "PBI_ResultType",
             "value": "Binary"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "expression": [
           "let",
-          "    Source = Folder.Files(\"C:\\Users\\ameunier\\Desktop\\Données\\Données\\Statsequipe\"),",
+          "    Source = Folder.Files(Chemin & \"\\Statsequipe\"),",
           "    Navigation1 = Source{0}[Content]",
           "in",
           "    Navigation1"
@@ -79,11 +83,11 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-          "    #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})",
-          "in",
+          "let\r",
+          "    Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),\r",
+          "    #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})\r",
+          "in\r",
           "    #\"Colonnes renommées\""
         ],
         "kind": "m",
@@ -101,11 +105,11 @@
         "expression": [
           "let",
           "    Source = (Paramètre1 as binary) => let",
-          "    Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-          "    #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})",
-          "in",
-          "    #\"Colonnes renommées\"",
+          "        Source = Csv.Document(Paramètre1,[Delimiter=\";\", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+          "        #\"En-têtes promus\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+          "        #\"Colonnes renommées\" = Table.RenameColumns(#\"En-têtes promus\",{{\"JOUEUR\", \"JOUEUR.1\"}})",
+          "    in",
+          "        #\"Colonnes renommées\"",
           "in",
           "    Source"
         ],
@@ -127,12 +131,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2015-2016_Sheet\" = Source{[Item=\"liste joueuses 2015-2016\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2015-2016_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2015-2016_Sheet\" = Source{[Item=\"liste joueuses 2015-2016\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2015-2016_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -151,12 +155,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2017-2018_Sheet\" = Source{[Item=\"liste joueuses 2017-2018\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2017-2018_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2017-2018_Sheet\" = Source{[Item=\"liste joueuses 2017-2018\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2017-2018_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -175,12 +179,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2016-2017_Sheet\" = Source{[Item=\"liste joueuses 2016-2017\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2016-2017_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2016-2017_Sheet\" = Source{[Item=\"liste joueuses 2016-2017\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2016-2017_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -199,12 +203,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2018-2019_Sheet\" = Source{[Item=\"liste joueuses 2018-2019\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2018-2019_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2018-2019_Sheet\" = Source{[Item=\"liste joueuses 2018-2019\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2018-2019_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -223,12 +227,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2019-2020_Sheet\" = Source{[Item=\"liste joueuses 2019-2020\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2019-2020_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2019-2020_Sheet\" = Source{[Item=\"liste joueuses 2019-2020\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2019-2020_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -247,12 +251,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2020-2021_Sheet\" = Source{[Item=\"liste joueuses 2020-2021\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2020-2021_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type date}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2020-2021_Sheet\" = Source{[Item=\"liste joueuses 2020-2021\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2020-2021_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type date}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -271,12 +275,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2021-2022_Sheet\" = Source{[Item=\"liste joueuses 2021-2022\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2021-2022_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2021-2022_Sheet\" = Source{[Item=\"liste joueuses 2021-2022\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2021-2022_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -295,12 +299,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2022-2023_Sheet\" = Source{[Item=\"liste joueuses 2022-2023\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2022-2023_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2022-2023_Sheet\" = Source{[Item=\"liste joueuses 2022-2023\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2022-2023_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -319,12 +323,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2023-2024_Sheet\" = Source{[Item=\"liste joueuses 2023-2024\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2023-2024_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2023-2024_Sheet\" = Source{[Item=\"liste joueuses 2023-2024\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2023-2024_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -343,12 +347,12 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),",
-          "    #\"liste joueuses 2024-2025_Sheet\" = Source{[Item=\"liste joueuses 2024-2025\",Kind=\"Sheet\"]}[Data],",
-          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2024-2025_Sheet\", [PromoteAllScalars=true]),",
-          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})",
-          "in",
+          "let\r",
+          "    Source = Excel.Workbook(File.Contents(Chemin & \"\\liste joueuses multi annee.xlsm\"), null, true),\r",
+          "    #\"liste joueuses 2024-2025_Sheet\" = Source{[Item=\"liste joueuses 2024-2025\",Kind=\"Sheet\"]}[Data],\r",
+          "    #\"En-têtes promus\" = Table.PromoteHeaders(#\"liste joueuses 2024-2025_Sheet\", [PromoteAllScalars=true]),\r",
+          "    #\"Type modifié\" = Table.TransformColumnTypes(#\"En-têtes promus\",{{\"Saison\", type text}, {\"Nom_complet\", type text}, {\"Date de naissance\", type any}, {\"Taille\", type text}, {\"Equipe\", type text}, {\"Nationalité\", type text}, {\"Nom\", type text}, {\"Prenom\", type text}, {\"Nom_condense\", type text}})\r",
+          "in\r",
           "    #\"Type modifié\""
         ],
         "kind": "m",
@@ -366,7 +370,7 @@
             "value": "Text"
           }
         ],
-        "expression": "\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\" meta [IsParameterQuery=true, List={\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\"}, DefaultValue=\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\", Type=\"Any\", IsParameterQueryRequired=true]",
+        "expression": "\"L:\\BUT\\SD\\Promo 2022\\jsamain\\3ème année\\S6\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\" meta [IsParameterQuery=true, List={\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\", \"L:\\BUT\\SD\\Promo 2022\\jsamain\\3ème année\\S6\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\"}, DefaultValue=\"C:\\Users\\ameunier\\Desktop\\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\\Donnees\", Type=\"Any\", IsParameterQueryRequired=true]",
         "kind": "m",
         "lineageTag": "37c91f52-fccb-40fa-8285-f123db3af843",
         "queryGroup": "Paramètres"
@@ -826,7 +830,7 @@
         "annotations": [
           {
             "name": "PBI_ResultType",
-            "value": "Table"
+            "value": "Exception"
           },
           {
             "name": "PBI_NavigationStepName",
