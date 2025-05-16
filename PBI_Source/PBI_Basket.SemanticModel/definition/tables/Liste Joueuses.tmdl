@@ -1,0 +1,117 @@
+table 'Liste Joueuses'
+	isHidden
+	lineageTag: 6d0a74ae-965a-4866-9eae-01528907b186
+
+	column Saison
+		dataType: string
+		isHidden
+		lineageTag: e983eaff-b7ee-494d-8b15-6be2ff3ce976
+		summarizeBy: none
+		sourceColumn: Saison
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nom_complet
+		dataType: string
+		isHidden
+		lineageTag: c6843b83-91cc-42dd-81db-9c80ba97c77a
+		summarizeBy: none
+		sourceColumn: Nom_complet
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date de naissance'
+		dataType: string
+		isHidden
+		lineageTag: 881ab01b-f344-49b2-8f6f-10ad0ece243e
+		summarizeBy: none
+		sourceColumn: Date de naissance
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Taille
+		dataType: string
+		isHidden
+		lineageTag: 774e0aa8-bee5-4d56-b72f-3dbe6bef7436
+		summarizeBy: none
+		sourceColumn: Taille
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Equipe
+		dataType: string
+		isHidden
+		lineageTag: 45858b1d-f5de-411c-bce4-87b68aec8886
+		summarizeBy: none
+		sourceColumn: Equipe
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nationalité
+		dataType: string
+		isHidden
+		lineageTag: 5d964781-f2f0-47f6-b5b4-135472c1d277
+		summarizeBy: none
+		sourceColumn: Nationalité
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nom
+		dataType: string
+		isHidden
+		lineageTag: b95d6d39-9f7a-4c55-982b-dc529b9e1504
+		summarizeBy: none
+		sourceColumn: Nom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prenom
+		dataType: string
+		isHidden
+		lineageTag: 8d3beb9c-04f8-4b25-9118-3f8509c9b8ee
+		summarizeBy: none
+		sourceColumn: Prenom
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nom_condense
+		dataType: string
+		isHidden
+		lineageTag: ec66b4fe-a8b8-45e9-ba6c-4820e2349942
+		summarizeBy: none
+		sourceColumn: Nom_condense
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Liste Joueuses' = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({#"liste joueuses 2015-2016", #"liste joueuses 2017-2018", #"liste joueuses 2016-2017", #"liste joueuses 2018-2019", #"liste joueuses 2019-2020", #"liste joueuses 2020-2021", #"liste joueuses 2021-2022", #"liste joueuses 2022-2023", #"liste joueuses 2023-2024", #"liste joueuses 2024-2025"})
+				in
+				    Source
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

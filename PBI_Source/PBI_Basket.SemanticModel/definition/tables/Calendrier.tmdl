@@ -1,0 +1,70 @@
+table Calendrier
+	lineageTag: a6b4e3ac-dc83-4e6d-905c-e49ede55e38e
+
+	column Journée
+		dataType: int64
+		formatString: 0
+		lineageTag: a6f28f55-7804-44b6-a887-83d9f1b9b7ad
+		summarizeBy: sum
+		sourceColumn: Journée
+
+		annotation SummarizationSetBy = Automatic
+
+	column Domicile
+		dataType: string
+		lineageTag: 54f81ed1-e8e5-4f83-8393-187626368e19
+		summarizeBy: none
+		sourceColumn: Domicile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exterieur
+		dataType: string
+		lineageTag: ef3f9c00-6c0b-421e-94e9-9472bb099fc2
+		summarizeBy: none
+		sourceColumn: Exterieur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Score domicile'
+		dataType: int64
+		formatString: 0
+		lineageTag: a1f55837-8d51-4ed4-9e4c-934c0b0e3840
+		summarizeBy: sum
+		sourceColumn: Score domicile
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Score Exterieur'
+		dataType: int64
+		formatString: 0
+		lineageTag: b3135f98-d276-49cf-8109-485446267bdb
+		summarizeBy: sum
+		sourceColumn: Score Exterieur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Derby
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a11d67c-ab3c-4566-9aec-3726e39d4f73
+		summarizeBy: sum
+		sourceColumn: Derby
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendrier = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(Chemin & "\calendrier et resultat.xlsx"), null, true),
+				    Calendrier_Sheet = Source{[Item="Calendrier",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Calendrier_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Journée", Int64.Type}, {"Domicile", type text}, {"Exterieur", type text}, {"Score domicile", Int64.Type}, {"Score Exterieur", Int64.Type}, {"Derby", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

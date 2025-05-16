@@ -1,0 +1,71 @@
+table Equipe
+	lineageTag: acdf13d9-153e-4537-a9a3-24eea12bbf35
+
+	column Equipe
+		dataType: string
+		lineageTag: 5092140b-832e-46fe-8395-1d24d3bf901c
+		summarizeBy: none
+		sourceColumn: Equipe
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeamOffensiveRating = CALCULATE(AVERAGE(StatsEquipe[OffensiveRating]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe]))
+		lineageTag: 09614168-375f-4984-81df-72cb9af8fd93
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TeamDefensiveRating = CALCULATE(AVERAGE(StatsEquipe[DefensiveRating]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe]))
+		lineageTag: 1676cf52-7a98-4f2b-b16d-4f5029dfea25
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WinRate = ```
+			
+			VAR NbVictoire = CALCULATE(COUNT(StatsEquipe[Num_match]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe] && StatsEquipe[Gagne_perdu] = "Victoire"))
+			VAR NbMatch = CALCULATE(COUNT(StatsEquipe[Num_match]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe]))
+			RETURN
+			DIVIDE(NbVictoire, NbMatch)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 2a6eb51f-dc03-4783-9e67-0dc358b1cc76
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeamNetRating = CALCULATE(AVERAGE(StatsEquipe[NetRating]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe]))
+		lineageTag: 366c20f4-5b9f-4b6e-921e-6316a308716c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TeamPossession = CALCULATE(AVERAGE(StatsEquipe[Possessions]),FILTER(StatsEquipe,StatsEquipe[Equipe] = Equipe[Equipe]))
+		lineageTag: e5d81b02-c881-44d2-8ef2-f9cd0bdfdcc7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Equipe = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("7VlNT8MwDP0rVc9Mmrhw7rjCBRCXskPYrK0ipJC0lfbvNxBCUdOsSZrPbjc7TRTHeX6207LMn+rNHrIOyBYgX9+U+f0eUQxdhbFcJ+igJTcUmKg8oNOmlABqDdRDTcaEx5o0X4BxBdRIF1yzQuwDmuzXFDboHIUlwpRnVJFmUXyepgzqL4i+/60dFV9/LCHQdpBt39rl8vauYJvvmD6JDlnVLd0Nycoz+7eQlEMKsgPK1ESpqxQdY6KnEetagnViMBiwGfWcKOyjBS8x4oxG5guzAMhxBJRAHPnvSbcI5ElQkz8jBedZlTtiXOB1gPdUyyUJJL2Rsq96IU1iTi3le+VsKdlMwZ1pUaBDfdNv1ab3+7vHygK2GcFT6eeAJa4ZLyBvuBtJtovmyU4ng84i+3GHDwRozgJbDzoXBOm4OvkoIB3fQ2X/CJcC5gSep4L3SHOpS0Z/2tg00WO3dPZMnB2KndVE/E2vKWKLBx8pw2ccRNGPOsgHPvKHnXwgK+7neBO+s3CP8K4vkS4K1/UR", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Equipe = _t]),
+				    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Equipe", type text}}),
+				    #"Doublons supprimés" = Table.Distinct(#"Type modifié")
+				in
+				    #"Doublons supprimés"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,5 @@
+relationship AutoDetected_097c6337-9d30-490f-be1a-9bf72d9cca96
+	crossFilteringBehavior: bothDirections
+	fromColumn: StatsEquipe.Equipe
+	toColumn: Equipe.Equipe
+
