@@ -87,5 +87,6 @@ efficency offensive
 taux de possession
 rating offenssive and defensive
 
-https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/ 
-https://viziball.app/glossary/nba/en 
+https://basket-infos.com/2015/08/15/statistiques-avancees-le-lexique/
+https://viziball.app/glossary/nba/en
+https://www.basketball-reference.com/about/ratings.html 
