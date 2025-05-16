@@ -1,0 +1,51 @@
+{
+  "config": "{\"version\":\"5.55\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU06\",\"version\":\"5.55\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU06",
+            "path": "BaseThemes/CY24SU06.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "6c6e88871704a77e6d63",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3cc662e330ac8a4191be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":109.90881458966565,\"z\":0,\"width\":254.8328267477204,\"height\":335.56231003039517,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Equipe\"},{\"queryRef\":\"CountNonNull(Statsequipe.Equipe)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"}},\"Function\":5},\"Name\":\"CountNonNull(Statsequipe.Equipe)\",\"NativeReferenceName\":\"Nombre de Equipe\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 335.56,
+          "width": 254.83,
+          "x": 0.00,
+          "y": 109.91,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6c4aa01e5ce93123ad4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1,\"width\":288.8753799392097,\"height\":109.90881458966565,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Saison\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Saison\"},\"Name\":\"Statsequipe.Saison\",\"NativeReferenceName\":\"Saison\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Saison\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'24-25'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 109.91,
+          "width": 288.88,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

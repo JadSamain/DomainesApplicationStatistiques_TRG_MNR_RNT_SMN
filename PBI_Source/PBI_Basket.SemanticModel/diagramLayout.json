@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1268,
+        "y": 271
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1334.308182237547,
+            "y": 655.17177437402881
+          },
+          "nodeIndex": "Calendrier",
+          "nodeLineageTag": "a6b4e3ac-dc83-4e6d-905c-e49ede55e38e",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1618.308182237547,
+            "y": 679.17177437402881
+          },
+          "nodeIndex": "Classement ELO LFB",
+          "nodeLineageTag": "c095ae9d-f186-4429-99ed-3f852b02ef7a",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1902.308182237547,
+            "y": 619.17177437402881
+          },
+          "nodeIndex": "Liste Joueuses",
+          "nodeLineageTag": "6d0a74ae-965a-4866-9eae-01528907b186",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2186.308182237547,
+            "y": 617.17177437402881
+          },
+          "nodeIndex": "Statsequipe",
+          "nodeLineageTag": "2ea75db0-9c20-4398-92f8-689bf6548f65",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toutes les tables",
+  "defaultDiagram": "Toutes les tables"
+}
