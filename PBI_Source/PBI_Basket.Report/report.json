@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.55\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU06\",\"version\":\"5.55\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.64\",\"type\":2},\"customTheme\":{\"name\":\"AccessibleTidal\",\"version\":\"5.64\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -7,8 +7,13 @@
         "disabled": false,
         "items": [
           {
-            "name": "CY24SU06",
-            "path": "BaseThemes/CY24SU06.json",
+            "name": "AccessibleTidal",
+            "path": "BuiltInThemes/AccessibleTidal.json",
+            "type": 201
+          },
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
             "type": 202
           }
         ],
@@ -18,6 +23,17 @@
     }
   ],
   "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 5",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "11c4bccfcb41d3015d93",
+      "ordinal": 5,
+      "visualContainers": [],
+      "width": 1280.00
+    },
     {
       "config": "{}",
       "displayName": "Test style de jeu",
@@ -31,6 +47,84 @@
     },
     {
       "config": "{}",
+      "displayName": "Page 4",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "32dcfa1c7f70f5346fc8",
+      "ordinal": 4,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6d37a5b682dbe4c530b5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":360.10820559062216,\"z\":2,\"width\":640.5770964833183,\"height\":360.10820559062216}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.% Tirs à Trois Points\"},{\"queryRef\":\"Statsequipe.% Tirs à Deux Points\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Trois Points\"},\"Name\":\"Statsequipe.% Tirs à Trois Points\",\"NativeReferenceName\":\"% Tirs à Trois Points\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Deux Points\"},\"Name\":\"Statsequipe.% Tirs à Deux Points\",\"NativeReferenceName\":\"% Tirs à Deux Points\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Trois Points\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.11,
+          "width": 640.58,
+          "x": 0.00,
+          "y": 360.11,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"893dd8e90f0824153f1d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640.5770964833183,\"y\":360.10820559062216,\"z\":3,\"width\":639.4229035166817,\"height\":360.10820559062216}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Statsequipe.Ratio Tirs 3pts vs 2pts\"}],\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Ratio Tirs 3pts vs 2pts\"},\"Name\":\"Statsequipe.Ratio Tirs 3pts vs 2pts\",\"NativeReferenceName\":\"Ratio Tirs 3pts vs 2pts\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Ratio Tirs 3pts vs 2pts\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.11,
+          "width": 639.42,
+          "x": 640.58,
+          "y": 360.11,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"a4f49132c92c1d9f2c12\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":-0.29898460493060863,\"z\":1,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.% Tirs à Deux Points\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Deux Points\"},\"Name\":\"Statsequipe.% Tirs à Deux Points\",\"NativeReferenceName\":\"% Tirs à Deux Points\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Deux Points\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 640.00,
+          "y": -0.30,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"af3258f6d8bc3a4361bf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":-0.29898460493060863,\"z\":0,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.% Tirs à Trois Points\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Trois Points\"},\"Name\":\"Statsequipe.% Tirs à Trois Points\",\"NativeReferenceName\":\"% Tirs à Trois Points\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"% Tirs à Trois Points\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 0.00,
+          "y": -0.30,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 3",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "680f155a36ca313ac5b6",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"c0be21ca1eb539e8586b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":761.7673579801623,\"y\":55.40126239855726,\"z\":2,\"width\":397.04238052299365,\"height\":212.37150586113614}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Moyenne de Points par Match\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points par Match\"},\"Name\":\"Statsequipe.Moyenne de Points par Match\",\"NativeReferenceName\":\"Moyenne de Points par Match\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points par Match\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 212.37,
+          "width": 397.04,
+          "x": 761.77,
+          "y": 55.40,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"dfe29d8c6eb591f1569c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.Moyenne de Points des Remplaçants\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points des Remplaçants\"},\"Name\":\"Statsequipe.Moyenne de Points des Remplaçants\",\"NativeReferenceName\":\"Moyenne de Points des Remplaçants\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points des Remplaçants\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
       "displayName": "Page 1",
       "displayOption": 1,
       "filters": "[]",
@@ -38,25 +132,83 @@
       "name": "6c6e88871704a77e6d63",
       "visualContainers": [
         {
-          "config": "{\"name\":\"3cc662e330ac8a4191be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":109.90881458966565,\"z\":0,\"width\":254.8328267477204,\"height\":335.56231003039517,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Equipe\"},{\"queryRef\":\"CountNonNull(Statsequipe.Equipe)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"}},\"Function\":5},\"Name\":\"CountNonNull(Statsequipe.Equipe)\",\"NativeReferenceName\":\"Nombre de Equipe\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"3cc662e330ac8a4191be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":109.88871224165342,\"z\":0,\"width\":269.63434022257553,\"height\":392.7503974562798,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Equipe\"},{\"queryRef\":\"CountNonNull(Statsequipe.Equipe)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"}},\"Function\":5},\"Name\":\"CountNonNull(Statsequipe.Equipe)\",\"NativeReferenceName\":\"Nombre d'équipes\"}]},\"columnProperties\":{\"CountNonNull(Statsequipe.Equipe)\":{\"displayName\":\"Nombre d'équipes\"}},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'FlashyRows'\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
           "filters": "[]",
-          "height": 335.56,
-          "width": 254.83,
+          "height": 392.75,
+          "width": 269.63,
           "x": 0.00,
-          "y": 109.91,
+          "y": 109.89,
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"6c4aa01e5ce93123ad4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":288.8753799392097,\"height\":109.90881458966565,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Saison\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Saison\"},\"Name\":\"Statsequipe.Saison\",\"NativeReferenceName\":\"Saison\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Saison\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'24-25'\"}}]]}}}]}}}}]}}}",
+          "config": "{\"name\":\"6c4aa01e5ce93123ad4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1000,\"width\":288.8753799392097,\"height\":109.90881458966565,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Statsequipe.Saison\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Saison\"},\"Name\":\"Statsequipe.Saison\",\"NativeReferenceName\":\"Saison\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
           "filters": "[]",
           "height": 109.91,
           "width": 288.88,
           "x": 0.00,
           "y": 0.00,
           "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"f587d5377c1a20d09fe9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":298.1240063593005,\"y\":137.36089030206676,\"z\":1001,\"width\":262.5119236883943,\"height\":337.80604133545313}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Classement ELO LFB.Équipe\"},{\"queryRef\":\"Sum(Classement ELO LFB.Rang)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Classement ELO LFB\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Équipe\"},\"Name\":\"Classement ELO LFB.Équipe\",\"NativeReferenceName\":\"Équipe\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Rang\"},\"Name\":\"Sum(Classement ELO LFB.Rang)\",\"NativeReferenceName\":\"Rang\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Rang\"}}}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"stylePreset\":[{\"properties\":{\"name\":{\"expr\":{\"Literal\":{\"Value\":\"'FlashyRows'\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 337.81,
+          "width": 262.51,
+          "x": 298.12,
+          "y": 137.36,
+          "z": 1001.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "d90de12ffc3634f9e3dd",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"5ee46dc72b7cd9f3f6c4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.Taux de Victoire\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire\"},\"Name\":\"Statsequipe.Taux de Victoire\",\"NativeReferenceName\":\"Taux de Victoire\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"61196343c16b7dc1ab26\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":360.1907790143084,\"z\":3,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.Moyenne de Points des Starters\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points des Starters\"},\"Name\":\"Statsequipe.Moyenne de Points des Starters\",\"NativeReferenceName\":\"Moyenne de Points des Starters\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Moyenne de Points des Starters\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 640.00,
+          "y": 360.19,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"e6b191388fc3c07751b8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":360.1907790143084,\"z\":1,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.Taux de Victoire à Domicile\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire à Domicile\"},\"Name\":\"Statsequipe.Taux de Victoire à Domicile\",\"NativeReferenceName\":\"Taux de Victoire à Domicile\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire à Domicile\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 360.19,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"f2d4dd53fe699385317e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":0,\"z\":2,\"width\":640,\"height\":360.1907790143084}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Statsequipe.Equipe\",\"active\":true}],\"Y\":[{\"queryRef\":\"Statsequipe.Taux de Victoire à l'Extérieur\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Statsequipe\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Equipe\"},\"Name\":\"Statsequipe.Equipe\",\"NativeReferenceName\":\"Equipe\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire à l'Extérieur\"},\"Name\":\"Statsequipe.Taux de Victoire à l'Extérieur\",\"NativeReferenceName\":\"Taux de Victoire à l'Extérieur\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"Taux de Victoire à l'Extérieur\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 360.19,
+          "width": 640.00,
+          "x": 640.00,
+          "y": 0.00,
+          "z": 2.00
         }
       ],
       "width": 1280.00
     }
-  ]
+  ],
+  "theme": "AccessibleTidal"
 }

@@ -1,0 +1,653 @@
+table Statsequipe
+	lineageTag: 2ea75db0-9c20-4398-92f8-689bf6548f65
+
+	measure 'Taux de Victoire' =
+			
+			VAR TotalMatchs =
+			    COUNTROWS(
+			        FILTER(
+			            ALLSELECTED(Statsequipe),
+			            Statsequipe[Equipe] = SELECTEDVALUE(Statsequipe[Equipe])
+			        )
+			    )
+			VAR MatchsGagnes =
+			    COUNTROWS(
+			        FILTER(
+			            ALLSELECTED(Statsequipe),
+			            Statsequipe[Equipe] = SELECTEDVALUE(Statsequipe[Equipe]) &&
+			            Statsequipe[Gagne_perdu] = "Victoire"
+			        )
+			    )
+			RETURN
+			    DIVIDE(MatchsGagnes, TotalMatchs, 0)
+		lineageTag: 9506a238-2adc-4a94-9c49-9f033a130935
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Taux de Victoire à Domicile' = ```
+			
+			VAR TotalMatchsDomicile =
+			    CALCULATE(
+			        COUNTROWS(StatsEquipe),
+			        Statsequipe[dom_ext] = "Domicile"
+			    )
+			VAR MatchsGagnesDomicile =
+			    CALCULATE(
+			        COUNTROWS(StatsEquipe),
+			        StatsEquipe[dom_ext] = "Domicile",
+			        StatsEquipe[Gagne_perdu] = "Victoire"
+			    )
+			RETURN
+			    DIVIDE(MatchsGagnesDomicile, TotalMatchsDomicile, 0)
+			
+			```
+		lineageTag: 6a830d64-e04f-431e-967f-73900249d246
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Mesure
+		lineageTag: aee7687d-e725-4370-8f67-c144a5984523
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Taux de Victoire à l''Extérieur' = ```
+			
+			VAR TotalMatchsExterieur =
+			    CALCULATE(
+			        COUNTROWS(StatsEquipe),
+			        StatsEquipe[dom_ext] = "Exterieur"
+			    )
+			VAR MatchsGagnesExterieur =
+			    CALCULATE(
+			        COUNTROWS(StatsEquipe),
+			        StatsEquipe[dom_ext] = "Exterieur",
+			        StatsEquipe[Gagne_perdu] = "Victoire"
+			    )
+			RETURN
+			    DIVIDE(MatchsGagnesExterieur, TotalMatchsExterieur, 0)
+			
+			```
+		lineageTag: 2b01710f-3f25-48b9-8bf2-d339a2c9ac37
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne de Points des Starters' =
+			
+			AVERAGEX(
+			    FILTER(
+			        StatsEquipe,
+			        StatsEquipe[Starter/bench] = "starter"
+			    ),
+			    StatsEquipe[Pts]
+			)
+		lineageTag: ccb98f42-d1e7-43c8-9535-ec75259f67e3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne de Points des Remplaçants' =
+			
+			AVERAGEX(
+			    FILTER(
+			        StatsEquipe,
+			        StatsEquipe[Starter/bench] = "banc"
+			    ),
+			    StatsEquipe[Pts]
+			)
+		lineageTag: 0fc824f6-2d7d-4cce-8ae6-69f954af41b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne de Points par Match' =
+			
+			AVERAGEX(
+			    StatsEquipe,
+			    StatsEquipe[Pts]
+			)
+		lineageTag: 6e0f7d4d-b034-4f8f-8b6c-cac40b3ae150
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Tirs à Trois Points' =
+			
+			DIVIDE(
+			    SUM(StatsEquipe[3pts_tentes]),
+			    SUM(StatsEquipe[Tirs_tentes]),
+			    0
+			)
+		lineageTag: 7328b8eb-a713-4f36-a9df-3db7b44fd2a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Tirs à Deux Points' =
+			
+			DIVIDE(
+			    SUM(StatsEquipe[2pts_tentes]),
+			    SUM(StatsEquipe[Tirs_tentes]),
+			    0
+			)
+		lineageTag: 6b41febb-446e-4efd-8b9e-c6302ab89434
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ratio Tirs 3pts vs 2pts' =
+			
+			DIVIDE(
+			    SUM(StatsEquipe[3pts_tentes]),
+			    SUM(StatsEquipe[2pts_tentes]),
+			    0
+			)
+		lineageTag: 5d8c8edc-76dc-4e9e-94ed-fb162ef53c92
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Equipe
+		dataType: string
+		lineageTag: 1117f6c5-1244-4073-b7c5-93f7a6fe0f0a
+		summarizeBy: none
+		sourceColumn: Equipe
+
+		annotation SummarizationSetBy = Automatic
+
+	column Saison
+		dataType: string
+		lineageTag: 9a6106df-9b45-4251-b912-acf12e9a597a
+		summarizeBy: none
+		sourceColumn: Saison
+
+		annotation SummarizationSetBy = Automatic
+
+	column Num_match
+		dataType: string
+		lineageTag: 4aebeb09-4cd4-468b-86fe-0a77f04be7cf
+		summarizeBy: none
+		sourceColumn: Num_match
+
+		annotation SummarizationSetBy = Automatic
+
+	column Competition
+		dataType: string
+		lineageTag: 26b8603a-4e6b-4974-b4bf-5e6b076f65f8
+		summarizeBy: none
+		sourceColumn: Competition
+
+		annotation SummarizationSetBy = Automatic
+
+	column dom_ext
+		dataType: string
+		lineageTag: 0da79b63-e144-41ca-b07e-adff3aa34b9e
+		summarizeBy: none
+		sourceColumn: dom_ext
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gagne_perdu
+		dataType: string
+		lineageTag: 11a84fb2-a187-44d1-b1c6-e952827566fe
+		summarizeBy: none
+		sourceColumn: Gagne_perdu
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adveresaire
+		dataType: string
+		lineageTag: 7e0ad509-c94a-463e-863e-9b1741538ed7
+		summarizeBy: none
+		sourceColumn: Adveresaire
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capitaine
+		dataType: string
+		lineageTag: 91b9a2c7-e8cd-412f-ad29-9d305b262ce6
+		summarizeBy: none
+		sourceColumn: Capitaine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Starter/bench
+		dataType: string
+		lineageTag: a089bc1b-6e40-4e8c-bd95-5b96c9957213
+		summarizeBy: none
+		sourceColumn: Starter/bench
+
+		annotation SummarizationSetBy = Automatic
+
+	column Joueur
+		dataType: string
+		lineageTag: 3fe905be-8fe3-4473-8afc-5d9df647c21d
+		summarizeBy: none
+		sourceColumn: Joueur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Minutes
+		dataType: string
+		lineageTag: 72f05a17-5ca7-41bc-9ec7-b9a13c9dbf87
+		summarizeBy: none
+		sourceColumn: Minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondes
+		dataType: string
+		lineageTag: afbc649a-282b-4cf5-9a55-1c60732be33c
+		summarizeBy: none
+		sourceColumn: Secondes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondes(minutes)
+		dataType: string
+		lineageTag: 519bc761-d9e0-4643-9a44-c508494705d7
+		summarizeBy: none
+		sourceColumn: Secondes(minutes)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tps_jeu_decimal
+		dataType: string
+		lineageTag: 30ef339d-35e5-4917-aa62-11cd6d7f3c18
+		summarizeBy: none
+		sourceColumn: Tps_jeu_decimal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tirs_marques
+		dataType: double
+		lineageTag: 6e78d667-4898-420b-98f7-4e7fd16a9088
+		summarizeBy: sum
+		sourceColumn: Tirs_marques
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tirs_tentes
+		dataType: double
+		lineageTag: 0cfa760b-8dfd-472a-bb05-03e3abfc18a6
+		summarizeBy: sum
+		sourceColumn: Tirs_tentes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %Tirs
+		dataType: double
+		lineageTag: a104d0ae-d641-42c2-8e66-7f25cf530320
+		summarizeBy: sum
+		sourceColumn: %Tirs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2pts_marques
+		dataType: double
+		lineageTag: b8c102f2-c135-432c-b3f6-5d82474b4770
+		summarizeBy: sum
+		sourceColumn: 2pts_marques
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 2pts_tentes
+		dataType: double
+		lineageTag: edaa2f59-af99-439a-b544-879cc91a0560
+		summarizeBy: sum
+		sourceColumn: 2pts_tentes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %2pts
+		dataType: double
+		lineageTag: ed031995-2ded-495a-aee4-ce13e83f7d9d
+		summarizeBy: sum
+		sourceColumn: %2pts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3pts_marques
+		dataType: double
+		lineageTag: 4d52b9ed-7cae-46a1-ab91-688c74aa7512
+		summarizeBy: sum
+		sourceColumn: 3pts_marques
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 3pts_tentes
+		dataType: double
+		lineageTag: 96bc609e-3917-4aec-9160-ad57fef2c935
+		summarizeBy: sum
+		sourceColumn: 3pts_tentes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %3pts
+		dataType: double
+		lineageTag: 7fea3767-e13d-4a04-afc6-c9cb3d8dd50e
+		summarizeBy: sum
+		sourceColumn: %3pts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LF_marques
+		dataType: double
+		lineageTag: 5ae249bd-fa14-433d-ade1-bcced848c943
+		summarizeBy: sum
+		sourceColumn: LF_marques
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LF_tentes
+		dataType: double
+		lineageTag: ae5869bb-718f-485a-89a6-0afdeafac319
+		summarizeBy: sum
+		sourceColumn: LF_tentes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %LF
+		dataType: double
+		lineageTag: 4ff04ed5-e9f8-4eb6-97ad-c47907b547d0
+		summarizeBy: sum
+		sourceColumn: %LF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pts_apres_balles_perdues
+		dataType: double
+		lineageTag: 6d497866-dba0-464c-bfd8-eb31fa7a8d39
+		summarizeBy: sum
+		sourceColumn: Pts_apres_balles_perdues
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Points_int
+		dataType: double
+		lineageTag: ba11fdcc-3e32-4912-9022-31345924e018
+		summarizeBy: sum
+		sourceColumn: Points_int
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Point_2eme_chance
+		dataType: double
+		lineageTag: e97aba25-5845-4bb5-8bf3-41d0fb84ef64
+		summarizeBy: sum
+		sourceColumn: Point_2eme_chance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Points_CA
+		dataType: double
+		lineageTag: 38a8606d-dfdd-49ab-a41d-fe7eb126f834
+		summarizeBy: sum
+		sourceColumn: Points_CA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Points_banc
+		dataType: double
+		lineageTag: 556e6a0a-17e8-49e0-a2dd-d2fe1a676571
+		summarizeBy: sum
+		sourceColumn: Points_banc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ecart_max
+		dataType: double
+		lineageTag: cb68c2c6-b2fc-42c1-89fe-4de6a7f2605e
+		summarizeBy: sum
+		sourceColumn: Ecart_max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Serie_max
+		dataType: double
+		lineageTag: e2fabe0d-e9fd-4570-9a9c-9a6f896e60f4
+		summarizeBy: sum
+		sourceColumn: Serie_max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pts
+		dataType: double
+		lineageTag: 46f1c75a-7fd3-4472-9d83-8cd3ae3fa9bd
+		summarizeBy: sum
+		sourceColumn: Pts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RO
+		dataType: double
+		lineageTag: bf41d742-9e52-4bfb-b8cd-aa16032e0c77
+		summarizeBy: sum
+		sourceColumn: RO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RD
+		dataType: double
+		lineageTag: 4af9400e-f68b-4fcd-81f4-b5d43c06866d
+		summarizeBy: sum
+		sourceColumn: RD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RT
+		dataType: double
+		lineageTag: 815edde7-3683-4d07-b361-bb8b16b558ee
+		summarizeBy: sum
+		sourceColumn: RT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PD
+		dataType: double
+		lineageTag: 347612e9-cd56-4976-b579-628ff96680d0
+		summarizeBy: sum
+		sourceColumn: PD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BP
+		dataType: double
+		lineageTag: e99fa36a-6176-44da-aab9-191594b2d202
+		summarizeBy: sum
+		sourceColumn: BP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INT
+		dataType: double
+		lineageTag: be3b4840-4198-40dd-8c9e-b8d8a6e05bf9
+		summarizeBy: sum
+		sourceColumn: INT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CT
+		dataType: double
+		lineageTag: 7337de07-3316-4656-9347-b1ec22fd3e03
+		summarizeBy: sum
+		sourceColumn: CT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTS
+		dataType: double
+		lineageTag: 3925c0c7-af0d-4ce7-808c-60deeceb74c3
+		summarizeBy: sum
+		sourceColumn: CTS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column F
+		dataType: double
+		lineageTag: 5efa6b8f-19d1-4f6c-aaf3-9cd1dc7e50c5
+		summarizeBy: sum
+		sourceColumn: F
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FPR
+		dataType: double
+		lineageTag: f9913196-8f68-4af2-807e-29bbbe34dfba
+		summarizeBy: sum
+		sourceColumn: FPR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column +/-
+		dataType: double
+		lineageTag: f1c8fd8a-2482-4f2f-8ec7-1bcc6c239799
+		summarizeBy: sum
+		sourceColumn: +/-
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EVAL
+		dataType: double
+		lineageTag: e6132c6d-37bc-426e-901a-fb21e3ff7c2f
+		summarizeBy: sum
+		sourceColumn: EVAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column N°
+		dataType: string
+		lineageTag: 4db6f9a7-c9ad-4a74-810b-1a9d1682234a
+		summarizeBy: none
+		sourceColumn: N°
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'JOUEUR.1'
+		dataType: string
+		lineageTag: b1fa10db-6c50-4342-a780-0b77ff245fab
+		summarizeBy: none
+		sourceColumn: JOUEUR.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Possessions
+		dataType: double
+		lineageTag: 2dadb1b5-010b-4026-a373-9728b2b96d63
+		summarizeBy: sum
+		sourceColumn: Possessions
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OffensiveRating
+		dataType: double
+		lineageTag: 722adf7c-f7cf-4ed9-8cf0-241b049a2100
+		summarizeBy: sum
+		sourceColumn: OffensiveRating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DefensiveRate
+		dataType: string
+		lineageTag: dd045c2d-4da1-44bc-b01c-9dcad6ee6825
+		summarizeBy: none
+		sourceColumn: DefensiveRate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Statsequipe = m
+		mode: import
+		source = ```
+				let
+				    Source = Folder.Files(Chemin & "\Statsequipe"),
+				    #"Fichiers masqués filtrés1" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+				    #"Appeler une fonction personnalisée1" = Table.AddColumn(#"Fichiers masqués filtrés1", "Transformer le fichier", each #"Transformer le fichier"([Content])),
+				    #"Colonnes renommées1" = Table.RenameColumns(#"Appeler une fonction personnalisée1", {"Name", "Source.Name"}),
+				    #"Autres colonnes supprimées1" = Table.SelectColumns(#"Colonnes renommées1", {"Source.Name", "Transformer le fichier"}),
+				    #"Colonne de tables développée1" = Table.ExpandTableColumn(#"Autres colonnes supprimées1", "Transformer le fichier", Table.ColumnNames(#"Transformer le fichier"(#"Exemple de fichier"))),
+				    #"Colonnes renommées" = Table.RenameColumns(#"Colonne de tables développée1",{{"Source.Name", "Equipe"}}),
+				    #"Valeur remplacée" = Table.ReplaceValue(#"Colonnes renommées",".csv","",Replacer.ReplaceText,{"Equipe"}),
+				    #"Lignes filtrées" = Table.SelectRows(#"Valeur remplacée", each ([Joueur] = "TOTAUX EQUIPE")),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Lignes filtrées",{{"Tirs_marques", type number}, {"Tirs_tentes", type number}, {"%Tirs", type number}, {"2pts_marques", type number}, {"2pts_tentes", type number}, {"%2pts", type number}, {"3pts_marques", type number}, {"3pts_tentes", type number}, {"%3pts", type number}, {"LF_marques", type number}, {"LF_tentes", type number}, {"%LF", type number}, {"Pts_apres_balles_perdues", type number}, {"Points_int", type number}, {"Point_2eme_chance", type number}, {"Points_CA", type number}, {"Points_banc", type number}, {"Ecart_max", type number}, {"Serie_max", type number}, {"Pts", type number}, {"RO", type number}, {"RD", type number}, {"RT", type number}, {"PD", type number}, {"BP", type number}, {"INT", type number}, {"CT", type number}, {"CTS", type number}, {"F", type number}, {"EVAL", type number}, {"+/-", type number}, {"FPR", type number}}),
+				    #"AjoutPossessions" = Table.AddColumn(#"Type modifié", "Possessions", each 
+				        0.5 * (
+				            ([Tirs_tentes] + 0.4 * [LF_tentes] - 1.07 * [RO]) + [BP]
+				        ), type number),
+				
+				    // Calcul de l'offensive rating
+				    #"AjoutOffRtg" = Table.AddColumn(#"AjoutPossessions", "OffensiveRating", each 
+				        if [Possessions] = 0 then null else ([Pts] / [Possessions]) * 100, type number),
+				    #"Valeur remplacée1" = Table.ReplaceValue(AjoutOffRtg,0,null,Replacer.ReplaceValue,{"+/-"}),
+				    #"Valeur remplacée2" = Table.ReplaceValue(#"Valeur remplacée1",-30,null,Replacer.ReplaceValue,{"+/-"}),
+				    #"Valeur remplacée3" = Table.ReplaceValue(#"Valeur remplacée2",30,null,Replacer.ReplaceValue,{"+/-"}),
+				    #"Valeur remplacée4" = Table.ReplaceValue(#"Valeur remplacée3",125,null,Replacer.ReplaceValue,{"+/-"}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Valeur remplacée4", "DefensiveRate", each ([INT] * [BP]) +([Possessions] / 5))
+				in
+				    #"Personnalisée ajoutée"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

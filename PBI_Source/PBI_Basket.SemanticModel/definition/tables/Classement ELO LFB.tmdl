@@ -1,0 +1,52 @@
+table 'Classement ELO LFB'
+	lineageTag: c095ae9d-f186-4429-99ed-3f852b02ef7a
+
+	column Rang
+		dataType: int64
+		formatString: 0
+		lineageTag: 75fb1bc4-7df0-4372-befb-4edc5bed59ca
+		summarizeBy: sum
+		sourceColumn: Rang
+
+		annotation SummarizationSetBy = Automatic
+
+	column Équipe
+		dataType: string
+		lineageTag: d0b728b6-0f85-4236-a270-a32e119ffcde
+		summarizeBy: none
+		sourceColumn: Équipe
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ELO estimé debut de saison'
+		dataType: int64
+		formatString: 0
+		lineageTag: a698e0b8-e905-46d5-b04a-e0841c7cac7c
+		summarizeBy: sum
+		sourceColumn: ELO estimé debut de saison
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commentaire
+		dataType: string
+		lineageTag: d5ca03cf-9ea0-4ddb-8b18-a3cc27b055ba
+		summarizeBy: none
+		sourceColumn: Commentaire
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Classement ELO LFB' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(Chemin & "\Classement ELO LFB.xlsx"), null, true),
+				    #"Classement ELO LFB_Sheet" = Source{[Item="Classement ELO LFB",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(#"Classement ELO LFB_Sheet", [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Rang", Int64.Type}, {"Équipe", type text}, {"ELO estimé debut de saison", Int64.Type}, {"Commentaire", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

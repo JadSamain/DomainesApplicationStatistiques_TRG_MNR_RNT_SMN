@@ -1,0 +1,195 @@
+expression 'Exemple de fichier' =
+		let
+		    Source = Folder.Files(Chemin & "\Statsequipe"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: f536dcca-f481-475d-9324-4f4ac82caeca
+	queryGroup: 'Transformer le fichier à partir de Statsequipe\Requêtes d''assistance'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression Paramètre1 = #"Exemple de fichier" meta [IsParameterQuery=true, BinaryIdentifier=#"Exemple de fichier", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 11d2c2c8-4d50-4ce3-a6c1-ea7b0e84a8a3
+	queryGroup: 'Transformer le fichier à partir de Statsequipe\Requêtes d''assistance'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformer l''exemple de fichier' =
+		let
+		    Source = Csv.Document(Paramètre1,[Delimiter=";", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Colonnes renommées" = Table.RenameColumns(#"En-têtes promus",{{"JOUEUR", "JOUEUR.1"}})
+		in
+		    #"Colonnes renommées"
+	lineageTag: 18fefec4-e79b-4d2d-9dbb-425fa1e4c090
+	queryGroup: 'Transformer le fichier à partir de Statsequipe'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transformer le fichier' =
+		let
+		    Source = (Paramètre1 as binary) => let
+		        Source = Csv.Document(Paramètre1,[Delimiter=";", Columns=47, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		        #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		        #"Colonnes renommées" = Table.RenameColumns(#"En-têtes promus",{{"JOUEUR", "JOUEUR.1"}})
+		    in
+		        #"Colonnes renommées"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformer l\u0027exemple de fichier""}" ]
+	lineageTag: 9f44440f-b799-4509-9d3d-051991197273
+	queryGroup: 'Transformer le fichier à partir de Statsequipe\Requêtes d''assistance'
+
+	annotation PBI_ResultType = Function
+
+expression 'liste joueuses 2015-2016' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2015-2016_Sheet" = Source{[Item="liste joueuses 2015-2016",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2015-2016_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: 46d45956-8233-4df0-9f28-8f9194de4536
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2017-2018' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2017-2018_Sheet" = Source{[Item="liste joueuses 2017-2018",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2017-2018_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: fe6d7d47-eca0-4257-8c9c-c6c75d29465d
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2016-2017' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2016-2017_Sheet" = Source{[Item="liste joueuses 2016-2017",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2016-2017_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: 69bae18b-34bb-4852-81c0-cbf33fedc158
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2018-2019' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2018-2019_Sheet" = Source{[Item="liste joueuses 2018-2019",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2018-2019_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: 000951ab-4264-4ef0-b060-6411fec58ad9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2019-2020' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2019-2020_Sheet" = Source{[Item="liste joueuses 2019-2020",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2019-2020_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: 77dd671a-1b34-4171-8085-4e42b5dc4296
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2020-2021' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2020-2021_Sheet" = Source{[Item="liste joueuses 2020-2021",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2020-2021_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type date}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: a3efa2d3-a293-459c-a2f1-730cd25ba1e0
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2021-2022' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2021-2022_Sheet" = Source{[Item="liste joueuses 2021-2022",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2021-2022_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: 7d555861-671f-47e6-acd5-b453de1d903b
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2022-2023' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2022-2023_Sheet" = Source{[Item="liste joueuses 2022-2023",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2022-2023_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: f44f2e0d-2350-49c1-9803-40f121dd3cb1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2023-2024' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2023-2024_Sheet" = Source{[Item="liste joueuses 2023-2024",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2023-2024_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: f186cb80-6aa9-4d78-963b-cf4119855293
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'liste joueuses 2024-2025' =
+		let
+		    Source = Excel.Workbook(File.Contents(Chemin & "\liste joueuses multi annee.xlsm"), null, true),
+		    #"liste joueuses 2024-2025_Sheet" = Source{[Item="liste joueuses 2024-2025",Kind="Sheet"]}[Data],
+		    #"En-têtes promus" = Table.PromoteHeaders(#"liste joueuses 2024-2025_Sheet", [PromoteAllScalars=true]),
+		    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Saison", type text}, {"Nom_complet", type text}, {"Date de naissance", type any}, {"Taille", type text}, {"Equipe", type text}, {"Nationalité", type text}, {"Nom", type text}, {"Prenom", type text}, {"Nom_condense", type text}})
+		in
+		    #"Type modifié"
+	lineageTag: d971cb1d-8b9f-46c5-a31b-b48beb086c17
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Chemin = "C:\Users\JadS\Desktop\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees" meta [IsParameterQuery=true, List={"C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "L:\BUT\SD\Promo 2022\jsamain\3ème année\S6\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "C:\Users\JadS\Desktop\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees"}, DefaultValue="C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", Type="Any", IsParameterQueryRequired=true]
+	lineageTag: 37c91f52-fccb-40fa-8285-f123db3af843
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

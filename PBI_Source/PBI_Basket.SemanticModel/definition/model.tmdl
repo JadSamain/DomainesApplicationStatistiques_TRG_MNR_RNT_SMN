@@ -1,0 +1,35 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transformer le fichier à partir de Statsequipe'
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Transformer le fichier à partir de Statsequipe\Requêtes d''assistance'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Paramètres
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["liste joueuses 2015-2016","liste joueuses 2017-2018","liste joueuses 2016-2017","liste joueuses 2018-2019","liste joueuses 2019-2020","liste joueuses 2020-2021","liste joueuses 2021-2022","liste joueuses 2022-2023","liste joueuses 2023-2024","liste joueuses 2024-2025","Liste Joueuses","Statsequipe","Exemple de fichier","Paramètre1","Transformer l'exemple de fichier","Transformer le fichier","Calendrier","Classement ELO LFB","Chemin"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.143.1378.0 (25.05)+4e1de9c957866bc5336e0d250838314aa54ff3a8
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Liste Joueuses'
+ref table Statsequipe
+ref table Calendrier
+ref table 'Classement ELO LFB'
+
+ref cultureInfo fr-FR
+
