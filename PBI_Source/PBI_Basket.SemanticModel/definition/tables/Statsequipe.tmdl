@@ -140,6 +140,32 @@ table Statsequipe
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Ratio RO/RD' = DIVIDE(SUM('Statsequipe'[RO]), SUM('Statsequipe'[RD]))
+		lineageTag: 19195ca1-89d8-4008-b83c-deaa140683c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ratio CTS/F' =
+			
+			DIVIDE(SUM('Statsequipe'[CTS]), SUM('Statsequipe'[F]))
+		lineageTag: 8f18f90a-510a-429b-89ba-c9bd3c6bcc22
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne Points (Gagné)' =
+			
+			CALCULATE(AVERAGE('Statsequipe'[Pts]), 'Statsequipe'[Gagne_perdu] = "Victoire")
+		lineageTag: 63f78691-2da5-423a-9388-9cc05f78fced
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moyenne Points (Perdu)' =
+			
+			CALCULATE(AVERAGE('Statsequipe'[Pts]), 'Statsequipe'[Gagne_perdu] = "Defaite")
+		lineageTag: 85ce7ae3-b5e2-44cf-ae8b-259dc6990393
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Equipe
 		dataType: string
 		lineageTag: 1117f6c5-1244-4073-b7c5-93f7a6fe0f0a
@@ -642,9 +668,10 @@ table Statsequipe
 				    #"Valeur remplacée2" = Table.ReplaceValue(#"Valeur remplacée1",-30,null,Replacer.ReplaceValue,{"+/-"}),
 				    #"Valeur remplacée3" = Table.ReplaceValue(#"Valeur remplacée2",30,null,Replacer.ReplaceValue,{"+/-"}),
 				    #"Valeur remplacée4" = Table.ReplaceValue(#"Valeur remplacée3",125,null,Replacer.ReplaceValue,{"+/-"}),
-				    #"Personnalisée ajoutée" = Table.AddColumn(#"Valeur remplacée4", "DefensiveRate", each ([INT] * [BP]) +([Possessions] / 5))
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Valeur remplacée4", "DefensiveRate", each ([INT] * [BP]) +([Possessions] / 5)),
+				    #"Lignes filtrées1" = Table.SelectRows(#"Personnalisée ajoutée", each ([Competition] <> "Coupe de France"))
 				in
-				    #"Personnalisée ajoutée"
+				    #"Lignes filtrées1"
 				```
 
 	annotation PBI_ResultType = Table

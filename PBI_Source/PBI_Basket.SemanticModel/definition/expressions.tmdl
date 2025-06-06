@@ -185,7 +185,7 @@ expression 'liste joueuses 2024-2025' =
 
 	annotation PBI_ResultType = Table
 
-expression Chemin = "C:\Users\JadS\Desktop\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees" meta [IsParameterQuery=true, List={"C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "L:\BUT\SD\Promo 2022\jsamain\3ème année\S6\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "C:\Users\JadS\Desktop\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees"}, DefaultValue="C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", Type="Any", IsParameterQueryRequired=true]
+expression Chemin = "C:\Users\JadSamain\OneDrive - ISTEP\Bureau\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees" meta [IsParameterQuery=true, List={"C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "L:\BUT\SD\Promo 2022\jsamain\3ème année\S6\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "C:\Users\JadS\Desktop\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", "C:\Users\JadSamain\OneDrive - ISTEP\Bureau\IUT\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees"}, DefaultValue="C:\Users\ameunier\Desktop\DomainesApplicationStatistiques_TRG_MNR_RNT_SMN\Donnees", Type="Any", IsParameterQueryRequired=true]
 	lineageTag: 37c91f52-fccb-40fa-8285-f123db3af843
 	queryGroup: Paramètres
 
