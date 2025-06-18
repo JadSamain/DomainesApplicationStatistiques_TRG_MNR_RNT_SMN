@@ -36,19 +36,6 @@
         },
         {
           "location": {
-            "x": 538.25423728813553,
-            "y": 27.233898305084743
-          },
-          "nodeIndex": "Liste Joueuses",
-          "nodeLineageTag": "6d0a74ae-965a-4866-9eae-01528907b186",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 4
-        },
-        {
-          "location": {
             "x": 346.4305084745763,
             "y": 361.37288135593224
           },
@@ -59,6 +46,18 @@
             "width": 234
           },
           "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 538.25423728813553,
+            "y": 27.233898305084743
+          },
+          "nodeIndex": "Equipe",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Toutes les tables",

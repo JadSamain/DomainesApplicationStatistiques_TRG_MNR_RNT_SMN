@@ -642,6 +642,61 @@ table Statsequipe
 
 		annotation SummarizationSetBy = Automatic
 
+	column DefensiveRating =
+			
+			DIVIDE(
+			    StatsEquipe[Pts_Adversaire],
+			    StatsEquipe[Poss_Adversaire]
+			) * 100
+		lineageTag: 6fa00667-59d1-49c1-8d1a-8e0403f9f26c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pts_Adversaire = ```
+			
+			LOOKUPVALUE(
+			    StatsEquipe[Pts],
+			    StatsEquipe[Num_match], StatsEquipe[Num_match],
+			    StatsEquipe[Competition], StatsEquipe[Competition],
+			    StatsEquipe[Saison], StatsEquipe[Saison],
+			    StatsEquipe[Equipe], StatsEquipe[Adveresaire]
+			)
+			
+			```
+		lineageTag: ca640f21-08ee-45b5-a64d-6c806d90bfd8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Poss_Adversaire = ```
+			
+			LOOKUPVALUE(
+			    StatsEquipe[Possessions],
+			    StatsEquipe[Num_match], StatsEquipe[Num_match],
+			    StatsEquipe[Competition], StatsEquipe[Competition],
+			    StatsEquipe[Saison], StatsEquipe[Saison],
+			    StatsEquipe[Equipe], StatsEquipe[Adveresaire]
+			)
+			
+			```
+		lineageTag: d549a9d6-fe72-4731-8f27-1ffc49712511
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetRating = StatsEquipe[OffensiveRating] - StatsEquipe[DefensiveRating]
+		lineageTag: dc793620-a5ba-48e4-a263-6455c3312bd1
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	partition Statsequipe = m
 		mode: import
 		source = ```

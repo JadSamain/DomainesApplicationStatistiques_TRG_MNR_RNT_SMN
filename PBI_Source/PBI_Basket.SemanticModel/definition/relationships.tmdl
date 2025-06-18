@@ -1,0 +1,10 @@
+relationship c69b64b6-4ccc-a939-ae77-fa9799a84aea
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Classement ELO LFB'.Équipe
+	toColumn: Equipe.Equipe
+
+relationship 40ed47a1-912e-4ff8-5173-228701d0db56
+	fromColumn: Statsequipe.Equipe
+	toColumn: Equipe.Equipe
+
